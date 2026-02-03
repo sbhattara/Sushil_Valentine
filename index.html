@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Be My Valentine 💖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Floating hearts container -->
+<div id="hearts"></div>
+
+<div class="container">
+    <h1>Will you be my Valentine? 💕🥺</h1>
+    <p>You don’t really have a choice 😌💘</p>
+
+    <!-- Cute GIF -->
+    <img 
+        src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
+        alt="cute gif"
+        class="gif"
+    >
+
+    <div class="buttons">
+        <button id="yes">Yes 💖😍</button>
+        <button id="no">No 😢</button>
+    </div>
+</div>
+
+<!-- Fake prank message -->
+<div id="prank">Nice try 😏 NO is disabled!</div>
+
+<script>
+    const noBtn = document.getElementById("no");
+    const prank = document.getElementById("prank");
+    const yesBtn = document.getElementById("yes");
+
+    // NO button runs away + prank
+    noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+
+        prank.style.display = "block";
+        setTimeout(() => prank.style.display = "none", 1200);
+    });
+
+    // YES button works
+    yesBtn.addEventListener("click", () => {
+        document.body.innerHTML = `
+            <div class="yes-screen">
+                <h1>YAYYYY 💘🥰</h1>
+                <p>You just made my heart so happy ❤️</p>
+                <img src="Thankyou.gif" />
+            </div>
+        `;
+    });
+
+    // Floating hearts
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
